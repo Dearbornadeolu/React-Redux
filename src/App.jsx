@@ -1,32 +1,28 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useSelector, useDispatch } from 'react-redux'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const counter = useSelector((state) => state.counter)
+  const dispatch = useDispatch()
+  const increament = ()=>{
+    dispatch({type: 'INC'})
+  }
+  const decreament =()=>{
+    dispatch({type : 'DEC'
+    })
+  }
+  const addBy =()=>{
+    dispatch({type : 'ADD', payload : 10})
+  }
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div >
+    <h1>Counter App</h1>
+    <h2>{counter}</h2>
+    <button onClick={increament}>Increment</button>
+    <button onClick={decreament}>Decrement</button>
+    <button onClick={addBy}>Add Value by 10</button>
     </div>
   )
 }
